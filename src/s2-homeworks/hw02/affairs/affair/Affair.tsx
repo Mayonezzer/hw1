@@ -2,17 +2,18 @@ import React from 'react'
 import { AffairType } from '../../HW2'
 import s from './Affair.module.css'
 import s2 from '../Affairs.module.css'
-import affairs from "../Affairs";
+
+
 
 type AffairPropsType = {
     // key не нужно типизировать
     affair: AffairType
-    deleteAffairCallback: any// need to fix any () => void
+    deleteAffairCallback: (_id: number) => void// need to fix any () => void
 }
 
 function Affair(props: AffairPropsType) {
-    const deleteCallback = (_id: number) => {
-        props.deleteAffairCallback(_id)
+    const deleteCallback = () => {
+        props.deleteAffairCallback(props.affair._id)
         // need to fix
     }
 
@@ -37,7 +38,7 @@ function Affair(props: AffairPropsType) {
             <button
                 id={'hw2-button-delete-' + props.affair._id}
                 className={buttonClass}
-                onClick = { () => deleteCallback(props.affair._id) }
+                onClick = {deleteCallback}
 
                 // need to fix
 
